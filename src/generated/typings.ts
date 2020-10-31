@@ -28,9 +28,13 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenRootTypes {
+  Mutation: {};
   Product: { // root type
+    description?: string | null; // String
     id?: string | null; // ID
     name?: string | null; // String
+    price?: number | null; // Int
+    sku?: string | null; // String
   }
   Query: {};
 }
@@ -44,9 +48,15 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 }
 
 export interface NexusGenFieldTypes {
+  Mutation: { // field return type
+    createProduct: NexusGenRootTypes['Product'] | null; // Product
+  }
   Product: { // field return type
+    description: string | null; // String
     id: string | null; // ID
     name: string | null; // String
+    price: number | null; // Int
+    sku: string | null; // String
   }
   Query: { // field return type
     products: Array<NexusGenRootTypes['Product'] | null> | null; // [Product]
@@ -54,9 +64,15 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Mutation: { // field return type name
+    createProduct: 'Product'
+  }
   Product: { // field return type name
+    description: 'String'
     id: 'ID'
     name: 'String'
+    price: 'Int'
+    sku: 'String'
   }
   Query: { // field return type name
     products: 'Product'
@@ -64,6 +80,14 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    createProduct: { // args
+      description?: string | null; // String
+      name?: string | null; // String
+      price?: number | null; // Int
+      sku?: string | null; // String
+    }
+  }
 }
 
 export interface NexusGenAbstractResolveReturnTypes {
@@ -71,7 +95,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Product" | "Query";
+export type NexusGenObjectNames = "Mutation" | "Product" | "Query";
 
 export type NexusGenInputNames = never;
 

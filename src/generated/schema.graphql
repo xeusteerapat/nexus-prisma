@@ -2,9 +2,16 @@
 ### Do not make changes to this file directly
 
 
+type Mutation {
+  createProduct(description: String, name: String, price: Int, sku: String): Product
+}
+
 type Product {
+  description: String
   id: ID
   name: String
+  price: Int
+  sku: String
 }
 
 type Query {

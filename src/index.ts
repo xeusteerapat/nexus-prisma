@@ -1,5 +1,15 @@
-import { queryType, mutationType, objectType, makeSchema } from '@nexus/schema';
+import {
+  queryType,
+  mutationType,
+  objectType,
+  makeSchema,
+  stringArg,
+  intArg,
+} from '@nexus/schema';
 import { ApolloServer } from 'apollo-server';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 // Products
 const Product = objectType({
@@ -7,12 +17,39 @@ const Product = objectType({
   definition(t) {
     t.id('id');
     t.string('name');
+    t.string('description');
+    t.int('price');
+    t.string('sku');
   },
 });
 
 // Reviews (one-to-many)
 
 // Categories (many-to-many)
+
+const Mutation = mutationType({
+  definition(t) {
+    t.field('createProduct', {
+      type: 'Product',
+      args: {
+        name: stringArg(),
+        description: stringArg(),
+        price: intArg(),
+        sku: stringArg(),
+      },
+      resolve: (_, { name, description, price, sku }) => {
+        return prisma.product.create({
+          data: {
+            name,
+            description,
+            price,
+            sku,
+          },
+        });
+      },
+    });
+  },
+});
 
 const Query = queryType({
   definition(t) {
@@ -39,7 +76,7 @@ const Query = queryType({
 });
 
 const schema = makeSchema({
-  types: [Query, Product],
+  types: [Query, Mutation, Product],
   outputs: {
     schema: __dirname + '/generated/schema.graphql',
     typegen: __dirname + '/generated/typings.ts',
