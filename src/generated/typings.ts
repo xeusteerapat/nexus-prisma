@@ -58,7 +58,6 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 
 export interface NexusGenFieldTypes {
   Category: { // field return type
-    categories: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
     id: string | null; // ID
     name: string | null; // String
     products: Array<NexusGenRootTypes['Product'] | null> | null; // [Product]
@@ -70,6 +69,7 @@ export interface NexusGenFieldTypes {
     createReview: NexusGenRootTypes['Review'] | null; // Review
   }
   Product: { // field return type
+    categories: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
     description: string | null; // String
     id: string | null; // ID
     name: string | null; // String
@@ -78,6 +78,7 @@ export interface NexusGenFieldTypes {
     sku: string | null; // String
   }
   Query: { // field return type
+    categories: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
     products: Array<NexusGenRootTypes['Product'] | null> | null; // [Product]
   }
   Review: { // field return type
@@ -89,7 +90,6 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   Category: { // field return type name
-    categories: 'Category'
     id: 'ID'
     name: 'String'
     products: 'Product'
@@ -101,6 +101,7 @@ export interface NexusGenFieldTypeNames {
     createReview: 'Review'
   }
   Product: { // field return type name
+    categories: 'Category'
     description: 'String'
     id: 'ID'
     name: 'String'
@@ -109,6 +110,7 @@ export interface NexusGenFieldTypeNames {
     sku: 'String'
   }
   Query: { // field return type name
+    categories: 'Category'
     products: 'Product'
   }
   Review: { // field return type name

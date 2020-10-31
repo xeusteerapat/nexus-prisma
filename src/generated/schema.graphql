@@ -3,7 +3,6 @@
 
 
 type Category {
-  categories: [Category]
   id: ID
   name: String
   products: [Product]
@@ -17,6 +16,7 @@ type Mutation {
 }
 
 type Product {
+  categories: [Category]
   description: String
   id: ID
   name: String
@@ -26,6 +26,7 @@ type Product {
 }
 
 type Query {
+  categories: [Category]
   products: [Product]
 }
 

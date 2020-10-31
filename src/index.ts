@@ -30,6 +30,20 @@ const Product = objectType({
         });
       },
     });
+    t.list.field('categories', {
+      type: 'Category',
+      resolve: parent => {
+        return prisma.category.findMany({
+          where: {
+            products: {
+              every: {
+                id: parent.id,
+              },
+            },
+          },
+        });
+      },
+    });
   },
 });
 
@@ -56,20 +70,6 @@ const Category = objectType({
           where: {
             categories: {
               some: {
-                id: parent.id,
-              },
-            },
-          },
-        });
-      },
-    });
-    t.list.field('categories', {
-      type: 'Category',
-      resolve: parent => {
-        return prisma.category.findMany({
-          where: {
-            products: {
-              every: {
                 id: parent.id,
               },
             },
@@ -165,6 +165,12 @@ const Query = queryType({
       type: 'Product',
       resolve: () => {
         return prisma.product.findMany();
+      },
+    });
+    t.list.field('categories', {
+      type: 'Category',
+      resolve: () => {
+        return prisma.category.findMany();
       },
     });
   },
