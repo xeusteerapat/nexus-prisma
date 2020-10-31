@@ -37,6 +37,11 @@ export interface NexusGenRootTypes {
     sku?: string | null; // String
   }
   Query: {};
+  Review: { // root type
+    body?: string | null; // String
+    id?: string | null; // ID
+    title?: string | null; // String
+  }
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
@@ -50,32 +55,46 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 export interface NexusGenFieldTypes {
   Mutation: { // field return type
     createProduct: NexusGenRootTypes['Product'] | null; // Product
+    createReview: NexusGenRootTypes['Review'] | null; // Review
   }
   Product: { // field return type
     description: string | null; // String
     id: string | null; // ID
     name: string | null; // String
     price: number | null; // Int
+    reviews: Array<NexusGenRootTypes['Review'] | null> | null; // [Review]
     sku: string | null; // String
   }
   Query: { // field return type
     products: Array<NexusGenRootTypes['Product'] | null> | null; // [Product]
+  }
+  Review: { // field return type
+    body: string | null; // String
+    id: string | null; // ID
+    title: string | null; // String
   }
 }
 
 export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
     createProduct: 'Product'
+    createReview: 'Review'
   }
   Product: { // field return type name
     description: 'String'
     id: 'ID'
     name: 'String'
     price: 'Int'
+    reviews: 'Review'
     sku: 'String'
   }
   Query: { // field return type name
     products: 'Product'
+  }
+  Review: { // field return type name
+    body: 'String'
+    id: 'ID'
+    title: 'String'
   }
 }
 
@@ -87,6 +106,11 @@ export interface NexusGenArgTypes {
       price?: number | null; // Int
       sku?: string | null; // String
     }
+    createReview: { // args
+      body?: string | null; // String
+      productId?: string | null; // String
+      title?: string | null; // String
+    }
   }
 }
 
@@ -95,7 +119,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Mutation" | "Product" | "Query";
+export type NexusGenObjectNames = "Mutation" | "Product" | "Query" | "Review";
 
 export type NexusGenInputNames = never;
 

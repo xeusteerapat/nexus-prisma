@@ -4,6 +4,7 @@
 
 type Mutation {
   createProduct(description: String, name: String, price: Int, sku: String): Product
+  createReview(body: String, productId: String, title: String): Review
 }
 
 type Product {
@@ -11,9 +12,16 @@ type Product {
   id: ID
   name: String
   price: Int
+  reviews: [Review]
   sku: String
 }
 
 type Query {
   products: [Product]
+}
+
+type Review {
+  body: String
+  id: ID
+  title: String
 }
