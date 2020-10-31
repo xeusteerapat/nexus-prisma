@@ -28,6 +28,10 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenRootTypes {
+  Category: { // root type
+    id?: string | null; // ID
+    name?: string | null; // String
+  }
   Mutation: {};
   Product: { // root type
     description?: string | null; // String
@@ -53,7 +57,15 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 }
 
 export interface NexusGenFieldTypes {
+  Category: { // field return type
+    categories: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
+    id: string | null; // ID
+    name: string | null; // String
+    products: Array<NexusGenRootTypes['Product'] | null> | null; // [Product]
+  }
   Mutation: { // field return type
+    categorizeProduct: NexusGenRootTypes['Product'] | null; // Product
+    createCategory: NexusGenRootTypes['Category'] | null; // Category
     createProduct: NexusGenRootTypes['Product'] | null; // Product
     createReview: NexusGenRootTypes['Review'] | null; // Review
   }
@@ -76,7 +88,15 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Category: { // field return type name
+    categories: 'Category'
+    id: 'ID'
+    name: 'String'
+    products: 'Product'
+  }
   Mutation: { // field return type name
+    categorizeProduct: 'Product'
+    createCategory: 'Category'
     createProduct: 'Product'
     createReview: 'Review'
   }
@@ -100,6 +120,13 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    categorizeProduct: { // args
+      categoryId?: string | null; // String
+      productId?: string | null; // String
+    }
+    createCategory: { // args
+      name?: string | null; // String
+    }
     createProduct: { // args
       description?: string | null; // String
       name?: string | null; // String
@@ -119,7 +146,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Mutation" | "Product" | "Query" | "Review";
+export type NexusGenObjectNames = "Category" | "Mutation" | "Product" | "Query" | "Review";
 
 export type NexusGenInputNames = never;
 

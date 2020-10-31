@@ -2,7 +2,16 @@
 ### Do not make changes to this file directly
 
 
+type Category {
+  categories: [Category]
+  id: ID
+  name: String
+  products: [Product]
+}
+
 type Mutation {
+  categorizeProduct(categoryId: String, productId: String): Product
+  createCategory(name: String): Category
   createProduct(description: String, name: String, price: Int, sku: String): Product
   createReview(body: String, productId: String, title: String): Review
 }

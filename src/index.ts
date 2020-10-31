@@ -44,6 +44,41 @@ const Review = objectType({
 });
 
 // Categories (many-to-many)
+const Category = objectType({
+  name: 'Category',
+  definition(t) {
+    t.id('id');
+    t.string('name');
+    t.list.field('products', {
+      type: 'Product',
+      resolve: parent => {
+        return prisma.product.findMany({
+          where: {
+            categories: {
+              some: {
+                id: parent.id,
+              },
+            },
+          },
+        });
+      },
+    });
+    t.list.field('categories', {
+      type: 'Category',
+      resolve: parent => {
+        return prisma.category.findMany({
+          where: {
+            products: {
+              every: {
+                id: parent.id,
+              },
+            },
+          },
+        });
+      },
+    });
+  },
+});
 
 const Mutation = mutationType({
   definition(t) {
@@ -87,6 +122,40 @@ const Mutation = mutationType({
         });
       },
     });
+    t.field('createCategory', {
+      type: 'Category',
+      args: {
+        name: stringArg(),
+      },
+      resolve: (_, { name }) => {
+        return prisma.category.create({
+          data: {
+            name,
+          },
+        });
+      },
+    });
+    t.field('categorizeProduct', {
+      type: 'Product',
+      args: {
+        productId: stringArg(),
+        categoryId: stringArg(),
+      },
+      resolve: (_, { productId, categoryId }) => {
+        return prisma.product.update({
+          where: {
+            id: productId,
+          },
+          data: {
+            categories: {
+              connect: {
+                id: categoryId,
+              },
+            },
+          },
+        });
+      },
+    });
   },
 });
 
@@ -102,7 +171,7 @@ const Query = queryType({
 });
 
 const schema = makeSchema({
-  types: [Query, Mutation, Product, Review],
+  types: [Query, Mutation, Product, Review, Category],
   outputs: {
     schema: __dirname + '/generated/schema.graphql',
     typegen: __dirname + '/generated/typings.ts',
