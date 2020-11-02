@@ -3,9 +3,9 @@
 
 
 type Category {
-  id: ID
-  name: String
-  products: [Product]
+  id: ID!
+  name: String!
+  products: [Product]!
 }
 
 type Mutation {
@@ -16,13 +16,13 @@ type Mutation {
 }
 
 type Product {
-  categories: [Category]
-  description: String
-  id: ID
-  name: String
-  price: Int
-  reviews: [Review]
-  sku: String
+  categories: [Category]!
+  description: String!
+  id: ID!
+  name: String!
+  price: Int!
+  reviews: [Review]!
+  sku: String!
 }
 
 type Query {
@@ -31,7 +31,7 @@ type Query {
 }
 
 type Review {
-  body: String
-  id: ID
-  title: String
+  body: String!
+  id: ID!
+  title: String!
 }

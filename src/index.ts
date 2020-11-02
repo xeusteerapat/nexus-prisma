@@ -14,6 +14,10 @@ const prisma = new PrismaClient();
 // Products
 const Product = objectType({
   name: 'Product',
+  nonNullDefaults: {
+    input: false,
+    output: true,
+  },
   definition(t) {
     t.id('id');
     t.string('name');
@@ -50,6 +54,10 @@ const Product = objectType({
 // Reviews (one-to-many)
 const Review = objectType({
   name: 'Review',
+  nonNullDefaults: {
+    input: false,
+    output: true,
+  },
   definition(t) {
     t.id('id');
     t.string('title');
@@ -60,6 +68,10 @@ const Review = objectType({
 // Categories (many-to-many)
 const Category = objectType({
   name: 'Category',
+  nonNullDefaults: {
+    input: false,
+    output: true,
+  },
   definition(t) {
     t.id('id');
     t.string('name');

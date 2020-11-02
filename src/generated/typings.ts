@@ -29,22 +29,22 @@ export interface NexusGenScalars {
 
 export interface NexusGenRootTypes {
   Category: { // root type
-    id?: string | null; // ID
-    name?: string | null; // String
+    id: string; // ID!
+    name: string; // String!
   }
   Mutation: {};
   Product: { // root type
-    description?: string | null; // String
-    id?: string | null; // ID
-    name?: string | null; // String
-    price?: number | null; // Int
-    sku?: string | null; // String
+    description: string; // String!
+    id: string; // ID!
+    name: string; // String!
+    price: number; // Int!
+    sku: string; // String!
   }
   Query: {};
   Review: { // root type
-    body?: string | null; // String
-    id?: string | null; // ID
-    title?: string | null; // String
+    body: string; // String!
+    id: string; // ID!
+    title: string; // String!
   }
 }
 
@@ -58,9 +58,9 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 
 export interface NexusGenFieldTypes {
   Category: { // field return type
-    id: string | null; // ID
-    name: string | null; // String
-    products: Array<NexusGenRootTypes['Product'] | null> | null; // [Product]
+    id: string; // ID!
+    name: string; // String!
+    products: Array<NexusGenRootTypes['Product'] | null>; // [Product]!
   }
   Mutation: { // field return type
     categorizeProduct: NexusGenRootTypes['Product'] | null; // Product
@@ -69,22 +69,22 @@ export interface NexusGenFieldTypes {
     createReview: NexusGenRootTypes['Review'] | null; // Review
   }
   Product: { // field return type
-    categories: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
-    description: string | null; // String
-    id: string | null; // ID
-    name: string | null; // String
-    price: number | null; // Int
-    reviews: Array<NexusGenRootTypes['Review'] | null> | null; // [Review]
-    sku: string | null; // String
+    categories: Array<NexusGenRootTypes['Category'] | null>; // [Category]!
+    description: string; // String!
+    id: string; // ID!
+    name: string; // String!
+    price: number; // Int!
+    reviews: Array<NexusGenRootTypes['Review'] | null>; // [Review]!
+    sku: string; // String!
   }
   Query: { // field return type
     categories: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
     products: Array<NexusGenRootTypes['Product'] | null> | null; // [Product]
   }
   Review: { // field return type
-    body: string | null; // String
-    id: string | null; // ID
-    title: string | null; // String
+    body: string; // String!
+    id: string; // ID!
+    title: string; // String!
   }
 }
 
