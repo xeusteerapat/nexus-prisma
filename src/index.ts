@@ -185,6 +185,12 @@ const Query = queryType({
         return prisma.category.findMany();
       },
     });
+    t.list.field('reviews', {
+      type: 'Review',
+      resolve: () => {
+        return prisma.review.findMany();
+      },
+    });
   },
 });
 

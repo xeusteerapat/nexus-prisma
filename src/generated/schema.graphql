@@ -28,6 +28,7 @@ type Product {
 type Query {
   categories: [Category]
   products: [Product]
+  reviews: [Review]
 }
 
 type Review {

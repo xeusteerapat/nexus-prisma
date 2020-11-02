@@ -80,6 +80,7 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     categories: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
     products: Array<NexusGenRootTypes['Product'] | null> | null; // [Product]
+    reviews: Array<NexusGenRootTypes['Review'] | null> | null; // [Review]
   }
   Review: { // field return type
     body: string; // String!
@@ -112,6 +113,7 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     categories: 'Category'
     products: 'Product'
+    reviews: 'Review'
   }
   Review: { // field return type name
     body: 'String'
