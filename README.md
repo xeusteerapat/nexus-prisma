@@ -29,3 +29,7 @@ query {
   }
 }
 ```
+
+## Live demo Graphql playground
+
+[see here](https://www.nexus-products-dev.digital/)
