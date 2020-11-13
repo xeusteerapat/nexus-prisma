@@ -5,7 +5,7 @@
 type Category {
   id: ID!
   name: String!
-  products: [Product]!
+  products: [Product!]!
 }
 
 type Mutation {
@@ -16,12 +16,12 @@ type Mutation {
 }
 
 type Product {
-  categories: [Category]!
+  categories: [Category!]!
   description: String!
   id: ID!
   name: String!
   price: Int!
-  reviews: [Review]!
+  reviews: [Review!]!
   sku: String!
 }
 

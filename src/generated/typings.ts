@@ -60,7 +60,7 @@ export interface NexusGenFieldTypes {
   Category: { // field return type
     id: string; // ID!
     name: string; // String!
-    products: Array<NexusGenRootTypes['Product'] | null>; // [Product]!
+    products: NexusGenRootTypes['Product'][]; // [Product!]!
   }
   Mutation: { // field return type
     categorizeProduct: NexusGenRootTypes['Product'] | null; // Product
@@ -69,12 +69,12 @@ export interface NexusGenFieldTypes {
     createReview: NexusGenRootTypes['Review'] | null; // Review
   }
   Product: { // field return type
-    categories: Array<NexusGenRootTypes['Category'] | null>; // [Category]!
+    categories: NexusGenRootTypes['Category'][]; // [Category!]!
     description: string; // String!
     id: string; // ID!
     name: string; // String!
     price: number; // Int!
-    reviews: Array<NexusGenRootTypes['Review'] | null>; // [Review]!
+    reviews: NexusGenRootTypes['Review'][]; // [Review!]!
     sku: string; // String!
   }
   Query: { // field return type
